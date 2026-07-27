@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const SwitchPage(),
+    );
+  }
+}
+
+class SwitchPage extends StatefulWidget {
+  const SwitchPage({super.key});
+
+  @override
+  State<SwitchPage> createState() => _SwitchPageState();
+}
+
+class _SwitchPageState extends State<SwitchPage> {
+  bool isOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Switch App'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              isOn ? 'ON' : 'OFF',
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Switch(
+              value: isOn,
+              onChanged: (value) {
+                setState(() {
+                  isOn = value;
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
